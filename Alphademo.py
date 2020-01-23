@@ -46,3 +46,46 @@ class Alphademo(object):
 
 	def get12(self):
 		return GPIO.input(12)
+		
+	def backward(self):
+		GPIO.output(self.IN1,GPIO.LOW)
+		GPIO.output(self.IN2,GPIO.HIGH)
+		GPIO.output(self.IN3,GPIO.HIGH)
+		GPIO.output(self.IN4,GPIO.LOW)
+
+	def left(self):
+		GPIO.output(self.IN1,GPIO.LOW)
+		GPIO.output(self.IN2,GPIO.LOW)
+		GPIO.output(self.IN3,GPIO.LOW)
+		GPIO.output(self.IN4,GPIO.HIGH)
+
+	def right(self):
+		GPIO.output(self.IN1,GPIO.HIGH)
+		GPIO.output(self.IN2,GPIO.LOW)
+		GPIO.output(self.IN3,GPIO.LOW)
+		GPIO.output(self.IN4,GPIO.LOW)
+		
+	def setPWMA(self,value):
+		self.PWMA.ChangeDutyCycle(value)
+
+	def setPWMB(self,value):
+		self.PWMB.ChangeDutyCycle(value)	
+		
+	def setMotor(self, left, right):
+		if((right >= 0) and (right <= 100)):
+			GPIO.output(self.IN1,GPIO.HIGH)
+			GPIO.output(self.IN2,GPIO.LOW)
+			self.PWMA.ChangeDutyCycle(right)
+		elif((right < 0) and (right >= -100)):
+			GPIO.output(self.IN1,GPIO.LOW)
+			GPIO.output(self.IN2,GPIO.HIGH)
+			self.PWMA.ChangeDutyCycle(0 - right)
+		if((left >= 0) and (left <= 100)):
+			GPIO.output(self.IN3,GPIO.HIGH)
+			GPIO.output(self.IN4,GPIO.LOW)
+			self.PWMB.ChangeDutyCycle(left)
+		elif((left < 0) and (left >= -100)):
+			GPIO.output(self.IN3,GPIO.LOW)
+			GPIO.output(self.IN4,GPIO.HIGH)
+			self.PWMB.ChangeDutyCycle(0 - left)
+
