@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from Alphademo import Alphademo
 
 app = Flask(__name__)
@@ -8,6 +8,22 @@ car = Alphademo()
 @app.route('/')
 def index():
     return 'Hello World'
+
+# @app.route('/setmotor/')
+# @app.route('/setmotor/<string:left>/')
+# @app.route('/setmotor/<string:left>/<string:right>')
+# def setmotor(left="0",right="0"):
+#     msg = ('left =' + left + "  right = " + right)
+#     car.setmotor(int(left),int(right))
+#     return '<h1> motor was set ' + msg + '</h1>'
+
+@app.route('/setmotor2')
+def setmotor2():
+    left = request.args.get('left',"0")
+    right = request.args.get('right','0')
+    msg = ('left =' + left + "  right = " + right)
+    #car.setmotor(int(left),int(right))
+    return '<h1> motor was set ' + msg + '</h1>'
 
 @app.route('/gpios')
 def gpio_demo():
