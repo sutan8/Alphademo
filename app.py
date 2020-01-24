@@ -9,6 +9,7 @@ car = Alphademo()
 def index():
     return 'Hello World'
 
+@app.route('
 @app.route('/gpios')
 def gpio_demo():
     msg = "<h1> GPIO TEST IN1</h1>"
