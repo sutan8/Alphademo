@@ -1,13 +1,16 @@
-from flask import Flask, request
+from flask import Flask, request, render_template, flash, redirect
 from Alphademo import Alphademo
+from forms import GoForm, Config
 
 app = Flask(__name__)
+app.config.from_object(Config)
 
 car = Alphademo()
 
 @app.route('/')
+@app.route('/index')
 def index():
-    return 'Hello World'
+    return render_template('index.html')
 
 
 # @app.route('/setmotor/')
@@ -18,13 +21,17 @@ def index():
 #     car.setmotor(int(left),int(right))
 #     return '<h1> motor was set ' + msg + '</h1>'
 
-@app.route('/setmotor2')
-def setmotor2():
-    left = request.args.get('left',"0")
-    right = request.args.get('right','0')
-    msg = ('left =' + left + "  right = " + right)
-    #car.setmotor(int(left),int(right))
-    return '<h1> motor was set ' + msg + '</h1>'
+@app.route('/setmotor', methods=['GET','POST'])
+def setmotor():
+    form = GoForm()
+    if form.validate_on_submit():
+        left = form.left.data
+        right = form.right.data
+        msg = ('left =' + left + "  right = " + right)
+        flash('<h1> motor was set ' + msg + '</h1>')
+        #car.setmotor(int(left),int(right))
+        return redirect('/index')
+    return render_template('setmotor.html',form=form)
 
 @app.route('/gpios')
 def gpio_demo():
