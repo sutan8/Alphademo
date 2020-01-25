@@ -9,7 +9,7 @@ class Alphademo(object):
         self.IN4 = in4
         self.ENA = ena
         self.ENB = enb
-
+        print(" initializing Alphabot..... ")
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
         GPIO.setup(self.IN1,GPIO.OUT)
