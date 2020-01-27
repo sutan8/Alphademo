@@ -1,13 +1,15 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Alphabot</title>
-</head>
-<body>
+<htmL>
+    <head>
+        {% if title %}
+        <title>{{title}} - Microblog</title>
+            {% else %}
+        <title>Welcome to Microblog!</title>
+        {% endif %}
+    </head>
     <body>
-    <div>Alphabot Demo:
+    <div>Microblog:
         <a href="/index">Home</a>
-        <a href="/setmotor">Set Motor</a>
+        <a href="/login">Login</a>
     </div>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -21,8 +23,8 @@
 
         {% block content %}
         {% endblock %}
-    </body>
-</html>
+        {% block content_motor %}
+        {% endblock %}
 
-</body>
+    </body>
 </html>

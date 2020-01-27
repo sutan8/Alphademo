@@ -1,10 +1,20 @@
 {% extends "base.html" %}
-
+ 
 {% block content %}
-    <h1>Welcome to AlphaDemo!</h1>
+        <h1>Hi, {{ user.username }}!</h1>
+        {% for post in posts %}
+            <div><p>{{post.author.username }} says: <b>{{ post.body }}</b></p></div>
+        {% endfor %}
+{% endblock %}
+ 
+
+{% block content_motor %}
+    <h2>Welcome to motor control! Using Alphabot class</h2>
 
     <div>Motor control:
         <a href="/setmotor">Set Motor</a>
+        <a href="/gpios">GPIOs test</a>
     </div>
 
 {% endblock %}
+
