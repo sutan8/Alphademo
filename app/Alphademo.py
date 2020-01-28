@@ -44,6 +44,14 @@ class Alphademo(object):
         GPIO.setup(self.ENA,GPIO.IN)
         GPIO.setup(self.ENB,GPIO.IN)
 
+    def set_output_mode(self):
+        GPIO.setup(self.IN1,GPIO.OUT)
+        GPIO.setup(self.IN2,GPIO.OUT)
+        GPIO.setup(self.IN3,GPIO.OUT)
+        GPIO.setup(self.IN4,GPIO.OUT)
+        GPIO.setup(self.ENA,GPIO.OUT)
+        GPIO.setup(self.ENB,GPIO.OUT)
+
     def get12(self):
         return GPIO.input(12)
         

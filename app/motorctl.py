@@ -59,6 +59,8 @@ def gpio_demo():
 
     car.disable()
     gpio_disabled = str(car.get12())
+    # reset GPIOs to all output
+    car.set_output_mode()
 
     return ( msg + '<h2> Gpio init = ' + gpio_init + '</h2>' +
             '<h2> Gpio stopped = ' + gpio_stopped + '</h2>' + 
